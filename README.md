@@ -1,7 +1,7 @@
 # Probabilistic Reward Learning Task
 
 ## Instructions
-Run this study by dragging/dropping RLwrapper function on the Matlab
+Run this study by dragging/dropping RLwrapper.m function on the Matlab
 command window. Psychtoolbox is a requirement. 
 
 Upon prompt: Enter subject ID and then indicate which session (test or re-test) it is.
