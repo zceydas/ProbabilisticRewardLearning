@@ -1,4 +1,4 @@
-function [win,RT,endGame,StimName,earning]=DetermineStimuli(Exprun,deck,directory,TrialType,LeftSide,RightSide,Correct,window,xCenter, yCenter, baseRect, squareXpos, numSquares,rightkey, leftkey,endcode,simulation,fontcolor);% Clear the workspace and the screen
+function [win,RT,endGame,StimName,earning,chosenSide,chosenStim]=DetermineStimuli(Exprun,deck,directory,TrialType,LeftSide,RightSide,Correct,window,xCenter, yCenter, baseRect, squareXpos, numSquares,rightkey, leftkey,endcode,simulation,fontcolor);% Clear the workspace and the screen
 endGame=0;
 % determine target and fixation cross durations below
 fixFont=40;
@@ -6,6 +6,9 @@ firstFixDur=.3;
 feedbackdur=2;
 targetDur=2.5;
 ITI=1+rand;
+chosenSide='NA';
+chosenStim='NA';
+
 
 % Set different stimuli for Gain and Loss trials
 if TrialType == 'Gain'
@@ -58,8 +61,12 @@ RT=GetSecs-t0;
 Screen('DrawText', window, sprintf( '%s', '+' ), xCenter, yCenter,fontcolor);
 if (keyCode(leftkey))
     Screen(window,'PutImage',LeftTop,ImageDim(:,1));
+    chosenSide='left';
+    chosenStim=LeftSide; 
 elseif (keyCode(rightkey))
     Screen(window,'PutImage',RightTop,ImageDim(:,2));
+    chosenSide='right';
+    chosenStim=RightSide; 
 end
 Screen('Flip', window); WaitSecs(firstFixDur);
 
