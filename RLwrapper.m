@@ -113,18 +113,21 @@ for Exprun=1:3
         RightSide=TrialInfo.Right{1};
         Correct=TrialInfo.Winner{1};
         
-        [win,RT,endGame,StimName,earning]=DetermineStimuli(Exprun,deck,directory,TrialType,LeftSide,RightSide,Correct,window,xCenter, yCenter, baseRect, squareXpos, numSquares,rightkey, leftkey,endcode,simulation,fontcolor);
+       [win,RT,endGame,StimName,earning,chosenSide,chosenStim]=DetermineStimuli(Exprun,deck,directory,TrialType,LeftSide,RightSide,Correct,window,xCenter, yCenter, baseRect, squareXpos, numSquares,rightkey, leftkey,endcode,simulation,fontcolor);
         
         % organize results
         Results{trialNo,1}=Exprun;
-        Results{trialNo,2}=TrialType;
-        Results{trialNo,3}=StimName;
-        Results{trialNo,4}=LeftSide;
-        Results{trialNo,5}=RightSide;
-        Results{trialNo,6}=Correct;
-        Results{trialNo,7}=win;
-        Results{trialNo,8}=RT;
-        Results{trialNo,9}=earning;
+        Results{trialNo,2}=trialNo;
+        Results{trialNo,3}=TrialType;
+        Results{trialNo,4}=StimName;
+        Results{trialNo,5}=LeftSide;
+        Results{trialNo,6}=RightSide;
+        Results{trialNo,7}=Correct;
+        Results{trialNo,8}=win;
+        Results{trialNo,9}=RT;
+        Results{trialNo,10}=earning;
+        Results{trialNo,11}=chosenSide;
+        Results{trialNo,12}=chosenStim;
 
         if endGame == 1
             break
@@ -149,8 +152,8 @@ Screen('CloseAll');
 EndTime = datestr(now);
 display(['The participant earned ' num2str(sum(cell2mat(Results(:,end)))) ' dollars!']);
 % save data in excel form and place in them subject folder
-Table=table(AllResults(:,1),AllResults(:,2),AllResults(:,3),AllResults(:,4),AllResults(:,5),AllResults(:,6),AllResults(:,7),AllResults(:,8), AllResults(:,9), ...
-    'VariableNames',{'RunNo','TrialType','StimulusName','LeftSide','RightSide','CorrectSide','Accuracy','RT','Earning' });
+Table=table(AllResults(:,1),AllResults(:,2),AllResults(:,3),AllResults(:,4),AllResults(:,5),AllResults(:,6),AllResults(:,7),AllResults(:,8), AllResults(:,9), AllResults(:,10),AllResults(:,11),AllResults(:,12),...
+    'VariableNames',{'RunNo','TrialNo','TrialType','StimulusName','LeftSide','RightSide','CorrectSide','Accuracy','RT','Earning','ChosenSide' ,'ChosenStimulus'});
 writetable(Table,['Results',num2str(Session),'_' 'subject',num2str(subjectId),'_',date,'.xlsx']);
 
 files = dir(['*_subject' num2str(subjectId) '*.xlsx']);
