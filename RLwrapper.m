@@ -49,7 +49,7 @@ endGame=0;
 subjectId=input('What is subject ID?');
 Session=input('What is study session? Test(1), ReTest(2): '); % this can be 1 or 2 (test and re-test)
 simulation=input('Is this a simulation? Yes(1), No(0): '); % this can be 1 or 2 (test and re-test)
-datafileName = ['ID_' num2str(subjectId) '_Data Folder'];
+datafileName = ['ID_' num2str(subjectId) '_SessionNo' num2str(Session) '_Data Folder'];
 if ~exist(datafileName, 'dir')
     mkdir(datafileName);
 end
