@@ -102,7 +102,7 @@ AllResults=[];
 
 for Exprun=1:3
     
-    ConditionList.Trial=shuffle(ConditionList.Trial); % shuffle the trial number
+    ConditionList.Trial=Shuffle(ConditionList.Trial); % shuffle the trial number
     
     for trialNo=1:length(ConditionList.Trial)
         
