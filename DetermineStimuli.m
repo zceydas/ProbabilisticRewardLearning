@@ -8,7 +8,7 @@ targetDur=2.5;
 ITI=1+rand;
 chosenSide='NA';
 chosenStim='NA';
-
+earning=0;
 
 % Set different stimuli for Gain and Loss trials
 if TrialType == 'Gain'
