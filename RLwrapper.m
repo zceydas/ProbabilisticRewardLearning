@@ -53,9 +53,9 @@ datafileName = ['ID_' num2str(subjectId) '_SessionNo' num2str(Session) '_Data Fo
 if ~exist(datafileName, 'dir')
     mkdir(datafileName);
 end
-
+rng('default')
 rng(subjectId)
-cards=shuffle([1:8]);
+cards=Shuffle([1:8]);
 if Session == 1
     deck=cards(1:4);
 elseif Session == 2
