@@ -101,11 +101,9 @@ AllResults=[];
 
 for Exprun=1:3
     % prepare practice and test condition order
-    ConditionList=[];
     ConditionList=readtable('ConditionList.xlsx');
     ConditionList.Trial=Shuffle(ConditionList.Trial); % shuffle the trial number
     trialNo=1;
-    Results=[];
     
     while trialNo <= max(ConditionList.Trial)
         
@@ -171,5 +169,5 @@ files = dir(['*_subject' num2str(subjectId) '*.xlsx']);
 for f=1:length(files)
     movefile(fullfile(files(f).folder,files(f).name), datafileName)
 end
-display(['The participant earned ' num2str(sum(cell2mat(AllResults(:,10)))) ' dollars!']);
+display(['The participant earned ' num2str(sum(cell2mat(Results(:,10)))) ' dollars!']);
 

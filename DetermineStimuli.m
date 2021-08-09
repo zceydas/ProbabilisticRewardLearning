@@ -53,8 +53,12 @@ while GetSecs-t0<targetDur
     end 
 end
 else
-keyCode=zeros(1,256);
-keyCode(80)=1;
+    keyCode=zeros(1,256);
+    if rand>.85
+        keyCode(256)=1;   
+    else
+        keyCode(80)=1;
+    end
 end
 RT=GetSecs-t0;
 
@@ -84,7 +88,7 @@ if (~keyCode(endcode))
     if (keyCode(rightkey)) && leftcorrect == 1; win=0;  answer=1;  end
     if (keyCode(rightkey)) && leftcorrect == 0; win=1;  answer=1;  end
     if (~keyCode(rightkey) && ~keyCode(leftkey))
-        Screen('DrawText', window, sprintf( '%s', 'Only use left or right arrow keys.' ), xCenter-300, yCenter,fontcolor);
+        Screen('DrawText', window, sprintf( '%s', 'Use < or > keys to make a response.' ), xCenter-300, yCenter,fontcolor);
         Screen('Flip',window); WaitSecs(1); answer = 9; win=999; RT=999;
     end
 else
@@ -92,6 +96,8 @@ else
     Screen('Flip',window);
     endGame=1;
 end
+
+
 
 if win == 1
     if TrialType == 'Gain'
