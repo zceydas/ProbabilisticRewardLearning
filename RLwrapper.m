@@ -116,7 +116,7 @@ for Exprun=1:3
         RightSide=TrialInfo.Right{1};
         Correct=TrialInfo.Winner{1};
         
-        [win,RT,endGame,StimName,earning,chosenSide,chosenStim]=DetermineStimuli(Exprun,deck,directory,TrialType,LeftSide,RightSide,Correct,window,xCenter, yCenter, baseRect, squareXpos, numSquares,rightkey, leftkey,endcode,simulation,fontcolor);
+        [win,RT,endGame,StimName,earning,chosenSide,chosenStim,ChosenStimAccuracy]=DetermineStimuli(Exprun,deck,directory,TrialType,LeftSide,RightSide,Correct,window,xCenter, yCenter, baseRect, squareXpos, numSquares,rightkey, leftkey,endcode,simulation,fontcolor);
         
         % organize results
         Results{trialNo,1}=Exprun;
@@ -131,6 +131,8 @@ for Exprun=1:3
         Results{trialNo,10}=earning;
         Results{trialNo,11}=chosenSide;
         Results{trialNo,12}=chosenStim;
+        Results{trialNo,13}=ChosenStimAccuracy;
+
 
         if win > 1
            ConditionList(end+1,:)=TrialInfo; % if the answer could not be registered
@@ -164,8 +166,8 @@ KbStrokeWait;
 Screen('CloseAll');
 EndTime = datestr(now);
 % save data in excel form and place in them subject folder
-Table=table(AllResults(:,1),AllResults(:,2),AllResults(:,3),AllResults(:,4),AllResults(:,5),AllResults(:,6),AllResults(:,7),AllResults(:,8), AllResults(:,9), AllResults(:,10),AllResults(:,11),AllResults(:,12),...
-    'VariableNames',{'RunNo','TrialNo','TrialType','StimulusName','LeftSide','RightSide','CorrectSide','Accuracy','RT','Earning','ChosenSide' ,'ChosenStimulus'});
+Table=table(AllResults(:,1),AllResults(:,2),AllResults(:,3),AllResults(:,4),AllResults(:,5),AllResults(:,6),AllResults(:,7),AllResults(:,8), AllResults(:,9), AllResults(:,10),AllResults(:,11),AllResults(:,12),AllResults(:,13),...
+    'VariableNames',{'RunNo','TrialNo','TrialType','StimulusName','LeftSide','RightSide','CorrectSide','Accuracy','RT','Earning','ChosenSide' ,'ChosenStimulus','ChosenStimAccuracy'});
 writetable(Table,['Results',num2str(Session),'_' 'subject',num2str(subjectId),'_',date,'.xlsx']);
 files = dir(['*_subject' num2str(subjectId) '*.xlsx']);
 for f=1:length(files)

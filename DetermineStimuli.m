@@ -1,4 +1,4 @@
-function [win,RT,endGame,StimName,earning,chosenSide,chosenStim]=DetermineStimuli(Exprun,deck,directory,TrialType,LeftSide,RightSide,Correct,window,xCenter, yCenter, baseRect, squareXpos, numSquares,rightkey, leftkey,endcode,simulation,fontcolor);% Clear the workspace and the screen
+function [win,RT,endGame,StimName,earning,chosenSide,chosenStim,ChosenStimAccuracy]=DetermineStimuli(Exprun,deck,directory,TrialType,LeftSide,RightSide,Correct,window,xCenter, yCenter, baseRect, squareXpos, numSquares,rightkey, leftkey,endcode,simulation,fontcolor);% Clear the workspace and the screen
 endGame=0;
 % determine target and fixation cross durations below
 fixFont=40;
@@ -97,7 +97,11 @@ else
     endGame=1;
 end
 
-
+if strcmp(chosenStim,"A")
+    ChosenStimAccuracy=1;
+else
+    ChosenStimAccuracy=0;
+end
 
 if win == 1
     if TrialType == 'Gain'
