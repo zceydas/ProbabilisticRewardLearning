@@ -133,7 +133,7 @@ for Exprun=1:3
         Results{trialNo,12}=chosenStim;
 
         if win > 1
-           ConditionList(end+1,:)=ConditionList(trialNo,:); % if the answer could not be registered
+           ConditionList(end+1,:)=TrialInfo; % if the answer could not be registered
            ConditionList.Trial(end)=max(ConditionList.Trial)+1; % add that trial to the end of the list
         end
         
